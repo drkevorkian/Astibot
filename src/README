@@ -94,7 +94,7 @@ added extra  parameters for sim length (memory intensive)
 close debug console when asitbot is closed from menu bar
 work-around for GDAX too precise error (switching precision from 8 to 1)
 work-around for GDAX kicked from API ( switched sleep timer from 1 to 4)
-fixed all spelling errors ( I could find ) (part of what led me to contact you)
+fixed all spelling errors ( I could find )
 made it easier to style the main GUI and widgets from TradingBotConfig
 added fiat type to TradingBotConfig USD/EUR/GBP are supported by CB.
 added support for custom list of coins via json file. 
