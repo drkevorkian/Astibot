@@ -4,7 +4,8 @@ from TransactionManager import TransactionManager
 from Trader import Trader
 from UIGraph import UIGraph
 import TradingBotConfig as theConfig
-
+import ctypes
+import getopt, sys
 
 class AppState(object):
 
@@ -12,6 +13,10 @@ class AppState(object):
     nextAppState = "STATE_INITIALIZATION"
     
     def __init__(self, UIGraph, Trader, GDAXControler, InputDataHandler, MarketData, Settings):
+        
+        if(theConfig.CONFIG_DEBUG_SWITCH == False ):
+            ctypes.windll.user32.ShowWindow( ctypes.windll.kernel32.GetConsoleWindow(), 0 )
+        
         self.theUIGraph = UIGraph
         self.theTrader = Trader
         self.theGDAXControler = GDAXControler
@@ -29,7 +34,7 @@ class AppState(object):
         
     def APP_Execute(self):
         self.nextAppState = self.currentAppState
-        #print(self.currentAppState)
+        #print(self.currentAppState) 
         
         if (self.currentAppState == 'STATE_INITIALIZATION'):
             self.ManageInitializationState()
@@ -71,7 +76,7 @@ class AppState(object):
         self.theUIGraph.UIGR_SetSettingsButtonsEnabled(False)
         self.theUIGraph.UIGR_SetDonationButtonsEnabled(False)
         
-        self.theGDAXControler.GDAX_InitializeGDAXConnection()
+        self.theGDAXControler.GDAX_InitializeGDAXconnection()
         self.theUIGraph.UIGR_SetDonationButtonsEnabled(False)
         self.theInputDataHandler.INDH_PrepareHistoricDataSinceGivenHours(True, theConfig.NB_HISTORIC_DATA_HOURS_TO_PRELOAD_FOR_TRADING)
         
@@ -243,7 +248,7 @@ class AppState(object):
             pass
         
     def ManageTradingState(self):
-        self.theUIGraph.UIGR_updateCurrentState("Live trading", True, True)
+        self.theUIGraph.UIGR_updateCurrentState("LIVE TRADING", True, True)
                         
         # If user clicked on STOP button
         if (self.theUIGraph.UIGR_IsStartButtonClicked() == True):

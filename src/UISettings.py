@@ -3,26 +3,26 @@ from pyqtgraph.Qt import QtCore, QtGui
 from PyQt5.QtWidgets import QFrame
 from PyQt5.Qt import QIntValidator
 from PyQt5.Qt import QDoubleValidator
-from GDAXCurrencies import GDAXCurrencies
 import ctypes # Message box popup
+from GDAXCurrencies import GDAXCurrencies
 
 import TradingBotConfig as theConfig
 
 class UISettings(QtGui.QWidget):
     
-    STR_CHECKBOX_AUTHORIZATION_TEXT = "By entering your API keys, you accept to leave control of your Coinbase Pro account to this software through the Application Programming Interface (API). It includes algorithm-based buying or selling of fiat money or crypto-assets. You are the only responsible for the actions that are performed by this software through the API, even in case of unfavorable market, inappropriate buy or sell decision, software bug, undesired software behavior or any other undesired activity. Train yourself on the simulator before performing actual trading. Only give control to money / assets that you can afford to loose."
+    STR_CHECKBOX_AUTHORIZATION_TEXT = "By entering your API keys, you accept to leave control of your Coinbase Pro account to this software through the Application Programming Interface (API). It includes algorithm-based buying or selling of fiat money or Astibot-assets. You are the only responsible for the actions that are performed by this software through the API, even in case of unfavorable market, inappropriate buy or sell decision, software bug, undesired software behavior or any other undesired activity. Train yourself on the simulator before performing actual trading. Only give control to money / assets that you can afford to loose."
 
-    STR_BORDER_BLOCK_STYLESHEET = "QWidget {background-color : #151f2b;}"
-    STR_QLABEL_STYLESHEET = "QLabel { background-color : #203044; color : white; font: bold 13px;}"
-    STR_QLABEL_NOTE_STYLESHEET = "QLabel { background-color : #203044; color : white; font: 12px;}"
-    STR_QCHECKBOX_STYLESHEET = "QCheckBox { background-color : #203044; color : white; font: 10px;}"
-    STR_QCHECKBOX_LABEL_STYLESHEET = "QLabel { background-color : #203044; color : #C2C2C2; font: 10px;}"
-    STR_QLABEL_TITLE_STYLESHEET = "QLabel { background-color : #203044; color : #81C6FE; font: bold 16px;}"
-    STR_QTEXTEDIT_STYLESHEET = "QLineEdit { background-color : #203044; color : white; font: bold 13px; border: 1px solid white; border-radius: 4px;} QLineEdit:focus {border: 2px solid #007ad9;}"
-    STR_QTEXTEDIT_BLINK_STYLESHEET = "QLineEdit { background-color : #203044; color : white; font: bold 13px; border: 3px solid #00c11a; border-radius: 4px;} QLineEdit:focus {border: 3px solid #00c11a;}"
+    STR_BORDER_BLOCK_STYLESHEET = "QWidget {background-color : "+theConfig.CONFIG_STYLE_BG_COLOUR+";}"
+    STR_QLABEL_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: bold 13px;}"
+    STR_QLABEL_NOTE_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: 12px;}"
+    STR_QCHECKBOX_STYLESHEET = "QCheckBox { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: 10px;}"
+    STR_QCHECKBOX_LABEL_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : #ffffff; font: 12px;}"
+    STR_QLABEL_TITLE_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : #81C6FE; font: bold 16px;}"
+    STR_QTEXTEDIT_STYLESHEET = "QLineEdit { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: bold 13px; border: 1px solid white; border-radius: 4px;} QLineEdit:focus {border: 2px solid #007ad9;}"
+    STR_QTEXTEDIT_BLINK_STYLESHEET = "QLineEdit { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: bold 13px; border: 3px solid #00c11a; border-radius: 4px;} QLineEdit:focus {border: 3px solid #00c11a;}"
     STR_QFRAME_SEPARATOR_STYLESHEET = "background-color: rgb(28, 30, 28)"
-    STR_COMBO_STYLESHEET = "QComboBox { background-color : #203044; color : white; font: bold bold 13px; border: 1px solid white; border-radius: 4px;} QComboBox:focus {border: 2px solid #007ad9;} QListView{color: white; font: bold 13px;} QListView:focus {border: 2px solid #007ad9;} QComboBox QAbstractItemView::item{min-height: 32px;}"
-    STR_QSLIDER_STYLESHEET = "QSlider::handle:hover {background-color: #C6D0FF;}"
+    STR_COMBO_STYLESHEET = "QComboBox { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: bold bold 13px; border: 1px solid white; border-radius: 4px;} QComboBox:focus {border: 2px solid #007ad9;} QListView{color: white; font: bold 13px;} QListView:focus {border: 2px solid #007ad9;} QComboBox QAbstractItemView::item{min-height: 32px;}"
+    STR_QSLIDER_STYLESHEET = "QSlider::handle:hover {background-color: #000000; color: rgba(0,45,230,.9);}"
     STR_QBUTTON_APPLY_STYLESHEET = "QPushButton {background-color: #01599e; border-width: 2px; border-radius: 10px; border-color: white; font: bold 15px; color:white} QPushButton:pressed { background-color: #1d8d24 } QPushButton:hover { background-color: #002c4f }"
     STR_QBUTTON_CANCEL_STYLESHEET = "QPushButton {background-color: #7e8c98; border-width: 2px; border-radius: 10px; border-color: white; font: bold 15px; color:white} QPushButton:pressed { background-color: #bda300 } QPushButton:hover { background-color: #56616b }"
     
@@ -40,11 +40,12 @@ class UISettings(QtGui.QWidget):
         # Window settings
         self.setWindowModality(QtCore.Qt.ApplicationModal)
         self.setWindowTitle('Astibot Settings')
-        self.setStyleSheet("background-color:#203044;")
-        self.setWindowIcon(QtGui.QIcon("AstibotIcon.png"))
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        self.setStyleSheet("background-color:"+theConfig.CONFIG_STYLE_GRAPH_BG_COLOUR+";")
+        self.setWindowIcon(QtGui.QIcon("res/AstibotIcon.png"))
         self.setAutoFillBackground(True);
         self.setFixedSize(646, 660)
-        
+
         # Build layout
         self.BuildWindowLayout()
         
@@ -79,7 +80,7 @@ class UISettings(QtGui.QWidget):
                                                           
         self.strFiatType = self.theSettings.SETT_GetSettings()["strFiatType"]
         self.strCryptoType = self.theSettings.SETT_GetSettings()["strCryptoType"]
-        
+        ## simulation is set in hours, 1 day, 2 days, 3 days, 7 days, 14 days, 31 days, 90 days, 180 days, 365 days.
         self.simulationTimeRange = self.theSettings.SETT_GetSettings()["simulationTimeRange"]
         if (self.simulationTimeRange == 24):
             self.comboSimulationTimeRange.setCurrentIndex(0)
@@ -88,7 +89,19 @@ class UISettings(QtGui.QWidget):
         elif (self.simulationTimeRange == 72):
             self.comboSimulationTimeRange.setCurrentIndex(2)
         elif (self.simulationTimeRange == 168):
-            self.comboSimulationTimeRange.setCurrentIndex(3)            
+            self.comboSimulationTimeRange.setCurrentIndex(3)         
+        elif (self.simulationTimeRange == 336):
+            self.comboSimulationTimeRange.setCurrentIndex(4)        
+        elif (self.simulationTimeRange == 744):
+            self.comboSimulationTimeRange.setCurrentIndex(5)         
+        elif (self.simulationTimeRange == 2160):
+            self.comboSimulationTimeRange.setCurrentIndex(6)         
+        elif (self.simulationTimeRange == 4320):
+            self.comboSimulationTimeRange.setCurrentIndex(7)  
+        elif (self.simulationTimeRange == 6480):
+            self.comboSimulationTimeRange.setCurrentIndex(8)            
+        elif (self.simulationTimeRange == 8766):
+            self.comboSimulationTimeRange.setCurrentIndex(9)            
         else:
             self.comboSimulationTimeRange.setCurrentIndex(0)
             
@@ -212,7 +225,19 @@ class UISettings(QtGui.QWidget):
         elif (self.comboSimulationTimeRange.currentIndex() == 2):
             self.simulationTimeRange = 72            
         elif (self.comboSimulationTimeRange.currentIndex() == 3):
-            self.simulationTimeRange = 168                     
+            self.simulationTimeRange = 168         
+        elif (self.comboSimulationTimeRange.currentIndex() == 4):
+            self.simulationTimeRange = 336          
+        elif (self.comboSimulationTimeRange.currentIndex() == 5):
+            self.simulationTimeRange = 744           
+        elif (self.comboSimulationTimeRange.currentIndex() == 6):
+            self.simulationTimeRange = 2160            
+        elif (self.comboSimulationTimeRange.currentIndex() == 7):
+            self.simulationTimeRange = 4320            
+        elif (self.comboSimulationTimeRange.currentIndex() == 8):
+            self.simulationTimeRange = 6480            
+        elif (self.comboSimulationTimeRange.currentIndex() == 9):
+            self.simulationTimeRange = 8766                     
         else:
             pass
     
@@ -308,7 +333,7 @@ class UISettings(QtGui.QWidget):
         self.SeparatorLine2.setFixedHeight(15)
         
         # Trading Account layout ===========================================================
-        self.lblTitleTradingAccount = QtGui.QLabel("Coinbase Pro Connection parameters")
+        self.lblTitleTradingAccount = QtGui.QLabel("Coinbase Pro connection parameters")
         self.lblTitleTradingAccount.setStyleSheet(self.STR_QLABEL_TITLE_STYLESHEET);
         self.mainGridLayout1.addWidget(self.lblTitleTradingAccount, rowNumber, 0)
         rowNumber = rowNumber + 1
@@ -378,9 +403,10 @@ class UISettings(QtGui.QWidget):
         self.lblTradingPair.setContentsMargins(20,0,0,0)
         self.mainGridLayout2.addWidget(self.lblTradingPair, rowNumber, 0)
         self.comboTradingPair = QtGui.QComboBox()
+        self.comboTradingPair.setView(QtGui.QListView()); # Necessary to allow height change
         self.comboTradingPair.setView(QtGui.QListView())  # Necessary to allow height change
         for dictionary in GDAXCurrencies.get_currencies_list():
-            self.comboTradingPair.addItem(dictionary['full'])
+            self.comboTradingPair.addItem(dictionary['full'])       
         self.comboTradingPair.currentIndexChanged.connect(self.EventComboTradingPairChanged)
         self.comboTradingPair.setStyleSheet(self.STR_COMBO_STYLESHEET)
         self.mainGridLayout2.addWidget(self.comboTradingPair, rowNumber, 1)
@@ -500,7 +526,7 @@ class UISettings(QtGui.QWidget):
         self.mainGridLayout2.addWidget(self.lblSimulationSpeed, rowNumber, 0)
         self.sliderSimulationSpeed = QtGui.QSlider(QtCore.Qt.Horizontal)
         self.sliderSimulationSpeed.setMinimum(0)
-        self.sliderSimulationSpeed.setMaximum(100)
+        self.sliderSimulationSpeed.setMaximum(300)
         self.sliderSimulationSpeed.setValue(50)
         self.sliderSimulationSpeed.setStyleSheet(self.STR_QSLIDER_STYLESHEET)
         self.sliderSimulationSpeed.valueChanged.connect(self.EventMovedSliderSimulationSpeed)
@@ -528,6 +554,12 @@ class UISettings(QtGui.QWidget):
         self.comboSimulationTimeRange.addItem("Last 48h")
         self.comboSimulationTimeRange.addItem("Last 72h")
         self.comboSimulationTimeRange.addItem("Last Week")
+        self.comboSimulationTimeRange.addItem("Last 2 Weeks")
+        self.comboSimulationTimeRange.addItem("Last Month")
+        self.comboSimulationTimeRange.addItem("Last 3 Months")
+        self.comboSimulationTimeRange.addItem("Last 6 Months")
+        self.comboSimulationTimeRange.addItem("Last 9 Months")
+        self.comboSimulationTimeRange.addItem("Last year")
         self.comboSimulationTimeRange.setStyleSheet(self.STR_COMBO_STYLESHEET)
         self.comboSimulationTimeRange.currentIndexChanged.connect(self.EventComboSimulationTimeRange)
         self.mainGridLayout2.addWidget(self.comboSimulationTimeRange, rowNumber, 1)
@@ -573,4 +605,5 @@ class UISettings(QtGui.QWidget):
         self.timerBlinkStuffs.stop()
         self.blinkIsOn = False
         self.UpdateBlinkWidgetsDisplay()
-        self.hide()
+        self.close()
+        

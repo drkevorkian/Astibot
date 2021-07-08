@@ -1,6 +1,6 @@
 import time
 import threading
-
+import os
 import TradingBotConfig as theConfig
 from MarketData import MarketData
 from Trader import Trader
@@ -302,3 +302,4 @@ class InputDataHandler(object):
         self.abortOperations = True
         self.INDH_StopSimulation()
         self.INDH_StopLiveTrading()
+        os.kill(os.getpid(), 9) ## kill the bots background process via PID

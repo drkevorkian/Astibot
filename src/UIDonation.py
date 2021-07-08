@@ -11,19 +11,19 @@ class UIDonation(QtGui.QWidget):
     
     STR_CHECKBOX_AUTHORIZATION_TEXT = "I accept to give the present software a full control of my account through the Application Programming Interface. It includes algorithm-based buying or selling of fiat or cryptocurrency money / assets. I understand the risks related to software-based trading and, by entering here my personal API keys access, I am the only responsible for the totality of every action that is performed by this software through the API system even in case of bug, undesired software behavior, unfavorable market, inappropriate buy or sell decision. I have trained myself in Simulation mode to understand the Software trading strategy and, by entering my API keys, I only give control to money / assets that I can afford to loose."
 
-    STR_BORDER_BLOCK_STYLESHEET = "QWidget {background-color : #151f2b;}"
-    STR_QLABEL_STYLESHEET = "QLabel { background-color : #203044; color : white; font: 13px;}"
-    STR_QLABEL_GREEN_STYLESHEET = "QLabel { background-color : #203044; color : #24b62e; font: bold 14px;}"
-    STR_QLABEL_RED_STYLESHEET = "QLabel { background-color : #203044; color : #ff2e2e; font: bold 14px;}"
-    STR_QLABEL_SMALL_STYLESHEET = "QLabel { background-color : #203044; color : #C2C2C2; font: 11px;}"
-    STR_QCHECKBOX_STYLESHEET = "QCheckBox { background-color : #203044; color : white; font: 10px;}"
-    STR_QCHECKBOX_LABEL_STYLESHEET = "QLabel { background-color : #203044; color : #C2C2C2; font: 10px;}"
-    STR_QLABEL_TITLE_STYLESHEET = "QLabel { background-color : #203044; color : #81C6FE; font: bold 16px;}"
+    STR_BORDER_BLOCK_STYLESHEET = "QWidget {background-color : "+theConfig.CONFIG_STYLE_BG_COLOUR+";}"
+    STR_QLABEL_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: 13px;}"
+    STR_QLABEL_GREEN_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : #24b62e; font: bold 14px;}"
+    STR_QLABEL_RED_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : #ff2e2e; font: bold 14px;}"
+    STR_QLABEL_SMALL_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : #C2C2C2; font: 11px;}"
+    STR_QCHECKBOX_STYLESHEET = "QCheckBox { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: 10px;}"
+    STR_QCHECKBOX_LABEL_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : #C2C2C2; font: 10px;}"
+    STR_QLABEL_TITLE_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : #81C6FE; font: bold 16px;}"
     STR_QFRAME_SEPARATOR_STYLESHEET = "background-color: rgb(20, 41, 58);"
-    STR_QBUTTON_CLOSE_STYLESHEET = "QPushButton {background-color: #01599e; border-width: 2px; border-radius: 10px; border-color: white; font: bold 15px; color:white} QPushButton:pressed { background-color: #1d8d24 } QPushButton:hover { background-color: #002c4f }"
-    STR_QBUTTON_WITHDRAW_ENABLED_STYLESHEET = "QPushButton {background-color: #23b42c; border-width: 2px; border-radius: 10px; border-color: white; font: bold 13px; color:white} QPushButton:pressed { background-color: #1d8d24 } QPushButton:hover { background-color: #1a821f }"
-    STR_QBUTTON_WITHDRAW_DISABLED_STYLESHEET = "QPushButton {background-color: #9f9f9f; border-width: 2px; border-radius: 10px; border-color: white; font: bold 13px; color:white}"
-    STR_QTEXTEDIT_STYLESHEET = "QLineEdit { background-color : #203044; color : white; font: bold 13px; border: 1px solid white; border-radius: 4px;} QLineEdit:focus {border: 2px solid #007ad9;}"
+    STR_QBUTTON_CLOSE_STYLESHEET = "QPushButton {background-color: #01599e; border-width: 2px; border-radius: 3px; border-color: white; font: bold 15px; color:white} QPushButton:pressed { background-color: #1d8d24 } QPushButton:hover { background-color: #002c4f }"
+    STR_QBUTTON_WITHDRAW_ENABLED_STYLESHEET = "QPushButton {background-color: #23b42c; border-width: 2px; border-radius: 3px; border-color: white; font: bold 13px; color:white} QPushButton:pressed { background-color: #1d8d24 } QPushButton:hover { background-color: #1a821f }"
+    STR_QBUTTON_WITHDRAW_DISABLED_STYLESHEET = "QPushButton {background-color: #9f9f9f; border-width: 2px; border-radius: 3px; border-color: white; font: bold 13px; color:white}"
+    STR_QTEXTEDIT_STYLESHEET = "QLineEdit { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: bold 13px; border: 1px solid white; border-radius: 2px;} QLineEdit:focus {border: 2px solid #007ad9;}"
  
     RIGHT_LABELS_WIDTH_IN_PX = 75
     
@@ -47,8 +47,9 @@ class UIDonation(QtGui.QWidget):
         # Window settings
         self.setWindowModality(QtCore.Qt.ApplicationModal)
         self.setWindowTitle('Astibot')
-        self.setStyleSheet("background-color:#203044;")
-        self.setWindowIcon(QtGui.QIcon("AstibotIcon.png"))
+        self.setWindowFlags(QtCore.Qt.FramelessWindowHint)
+        self.setStyleSheet("background-color:"+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+";")
+        self.setWindowIcon(QtGui.QIcon("res/AstibotIcon.png"))
         self.setAutoFillBackground(True);
         self.setFixedSize(450, 350)
         
@@ -187,7 +188,7 @@ class UIDonation(QtGui.QWidget):
         
         self.txtDonationAmountEntry = QtGui.QLineEdit()
         self.txtDonationAmountEntry.setStyleSheet(self.STR_QTEXTEDIT_STYLESHEET)
-        self.txtDonationAmountEntry.setFixedWidth(80)
+        self.txtDonationAmountEntry.setFixedWidth(100)
         self.txtDonationAmountEntry.setText(str(theConfig.CONFIG_DONATION_DEFAULT_AMOUNT_IN_BTC))
         #self.txtDonationAmountEntry.changeEvent.connect(self.EventDonationAmountEntryChanged)
         

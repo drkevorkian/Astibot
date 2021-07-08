@@ -1,34 +1,27 @@
 #!.
-
-
 import threading
 import time
-import sys    
-    
+import sys
 import ipdb # To be able to see error stack messages occuring in the Qt MainLoop
-
 import os
 
-from Settings import Settings    
-from MarketData import MarketData
-from InputDataHandler import InputDataHandler
+from PyQt5.QtCore import QTimer
 from GDAXControler import GDAXControler
 from TransactionManager import TransactionManager
+from InputDataHandler import InputDataHandler
+from MarketData import MarketData
+from Settings import Settings
 from Trader import Trader
 from UIGraph import UIGraph
 from AppState import AppState
 import TradingBotConfig as theConfig
 import pyqtgraph as pg
+from pyqtgraph.Qt import QtCore, QtGui  # Only useful for splash screen
 
-from pyqtgraph.Qt import QtCore, QtGui # Only useful for splash screen
-    
-
-   
 class TradingBot(object):
 
             
     def __init__(self):
-        
         
         cwd = os.getcwd()
         print("Running Astibot in: %s" % cwd)
@@ -40,7 +33,7 @@ class TradingBot(object):
         self.app = pg.QtGui.QApplication(['Astibot'])
         
         # Show Splash Screen
-        splash_pix = QtGui.QPixmap('AstibotSplash.png')
+        splash_pix = QtGui.QPixmap('res/AstibotSplash.png')
         splash = QtGui.QSplashScreen(splash_pix, QtCore.Qt.WindowStaysOnTopHint)
         splash.show()
         
@@ -75,8 +68,7 @@ class TradingBot(object):
    
     def MainTimerHandler(self):
         self.theApp.APP_Execute()
-  
-        
+
 if __name__ == '__main__':
     theTradingBot = TradingBot()
   

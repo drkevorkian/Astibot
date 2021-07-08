@@ -11,6 +11,7 @@ from tzlocal import get_localzone
 from random import randint
 
 
+
 import TradingBotConfig as theConfig
 from UIWidgets import ButtonHoverStart
 from UIWidgets import ButtonHoverStart
@@ -68,25 +69,25 @@ class UIGraph():
     STR_LABEL_CURRENT_STATE = 'Current State : '
     STR_LABEL_TOTAL_GAINS = 'Total profit : '
 
-    STR_BORDER_BLOCK_STYLESHEET = "QWidget {background-color : #151f2b;}"
-    STR_USER_BLOCK_STYLESHEET = "QWidget {background-color : #203044;}"
-    STR_QLABEL_STYLESHEET = "QLabel { background-color : #203044; color : white; font: bold 13px;}"
-    STR_QLABEL_PROFIT_GREEN_STYLESHEET = "QLabel { background-color : #203044; color : #24b62e; font: bold 14px;}"
-    STR_QLABEL_PROFIT_RED_STYLESHEET = "QLabel { background-color : #203044; color : #FF2F2F; font: bold 14px;}"
-    STR_QLABEL_CURRENT_STATE_LIVE_TRADING_STYLESHEET = "QLabel { background-color : #203044; color : #ff2e2e; font: bold 14px;}"
-    STR_QLABEL_INFO_STYLESHEET = "QLabel { background-color : #203044; color : white; font: 14px;}"
-    STR_QLABEL_INFO_ERROR_STYLESHEET = "QLabel { background-color : #203044; color : #FF2F2F; font: 14px;}"
-    STR_QLABEL_INFO_GREEN_STYLESHEET = "QLabel { background-color : #203044; color : #29CF36; font: bold 14px; text-decoration: underline;}"
-    STR_QLABEL_INFO_ORANGE_STYLESHEET = "QLabel { background-color : #203044; color : #FF8000; font: bold 14px; text-decoration: underline;}"
-    STR_QLABEL_TOOLTIP_STYLESHEET = "QLabel { background-color : #151f2b; color : white; font: 10px;}"
-    STR_QLABEL_CONNECTION_STATUS_STYLESHEET = "QLabel { background-color : #151f2b; color : green; font: 10px;}"
-    STR_QLABEL_VERSION_STYLESHEET = "QLabel { background-color : #151f2b; color : #334c6b; font: 11px;}"
-    STR_QLABEL_LIVE_DATA_STYLESHEET = "QLabel { background-color : #151f2b; color : #334c6b; font: 10px;}"
-    STR_QRADIOBUTTON_STYLESHEET = "QRadioButton { background-color : #203044; color : white; font: 14px;} QRadioButton::indicator:checked {background-color: #007ad9; border: 1px solid white;} QRadioButton::indicator:unchecked {background-color: #203044; border: 1px solid white;}"
-    STR_QRADIOBUTTON_DISABLED_STYLESHEET = "QRadioButton { background-color : #203044; color : white; font: 14px;} QRadioButton::indicator:checked {background-color: #007ad9; border: 1px solid #203044;} QRadioButton::indicator:unchecked {background-color: #203044; border: 1px solid #203044;}"
+    STR_BORDER_BLOCK_STYLESHEET = "QWidget {background-color : "+theConfig.CONFIG_STYLE_BG_COLOUR+";}"
+    STR_USER_BLOCK_STYLESHEET = "QWidget {background-color : "+theConfig.CONFIG_STYLE_BG_COLOUR+";}"
+    STR_QLABEL_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: bold 13px;}"
+    STR_QLABEL_PROFIT_GREEN_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; color : #24b62e; font: bold 14px;}"
+    STR_QLABEL_PROFIT_RED_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; color : #FF2F2F; font: bold 14px;}"
+    STR_QLABEL_CURRENT_STATE_LIVE_TRADING_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; color : #ff2e2e; font: bold 16px;}"
+    STR_QLABEL_INFO_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: 14px;}"
+    STR_QLABEL_INFO_ERROR_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; color : #FF2F2F; font: 14px;}"
+    STR_QLABEL_INFO_GREEN_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; color : #29CF36; font: bold 14px; text-decoration: underline;}"
+    STR_QLABEL_INFO_ORANGE_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; color : #FF8000; font: bold 14px; text-decoration: underline;}"
+    STR_QLABEL_TOOLTIP_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: 10px;}"
+    STR_QLABEL_connection_STATUS_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: 14px;}"
+    STR_QLABEL_VERSION_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: 13px;}"
+    STR_QLABEL_LIVE_DATA_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_BG_COLOUR+"; color : #334c6b; font: 10px;}"
+    STR_QRADIOBUTTON_STYLESHEET = "QRadioButton { background-color : "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: 14px;} QRadioButton::indicator:checked {background-color: #007ad9; border: 1px solid white;} QRadioButton::indicator:unchecked {background-color: "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; border: 1px solid white;}"
+    STR_QRADIOBUTTON_DISABLED_STYLESHEET = "QRadioButton { background-color : "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: 14px;} QRadioButton::indicator:checked {background-color: #007ad9; border: 1px solid "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+";} QRadioButton::indicator:unchecked {background-color: "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; border: 1px solid "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+";}"
     STR_QBUTTON_START_STYLESHEET = "QPushButton {background-color: #23b42c; border-width: 2px; border-radius: 10px; border-color: white; font: bold 18px; color:white} QPushButton:pressed { background-color: #1d8d24 } QPushButton:hover { background-color: #1a821f }"
-    STR_QBUTTON_SETTINGS_STYLESHEET = "QPushButton {background-color: #21435e; border-width: 1.5px; border-radius: 10px; border-color: white; font: bold 15px; color:white} QPushButton:pressed { background-color: #096fbf } QPushButton:hover { background-color: #1D3850 }"
-    STR_QBUTTON_SETTINGS_DISABLED_STYLESHEET = "QPushButton {background-color: #183145; border-width: 1.5px; border-radius: 10px; border-color: #838fa7; font: bold 15px; color:#838fa7}"
+    STR_QBUTTON_SETTINGS_STYLESHEET = "QPushButton {background-color: "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; border-width: 1.5px; border-radius: 10px; border-color: white; font: bold 15px; color:white} QPushButton:pressed { background-color: #f8f8ff } QPushButton:hover { background-color: "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+" }"
+    STR_QBUTTON_SETTINGS_DISABLED_STYLESHEET = "QPushButton {background-color: "+theConfig.CONFIG_STYLE_BG_COLOUR+"; border-width: 1.5px; border-radius: 10px; border-color: #838fa7; font: bold 15px; color:#838fa7}"
     STR_QBUTTON_START_DISABLED_STYLESHEET = "QPushButton {background-color: #9f9f9f; border-width: 2px; border-radius: 10px; border-color: white; font: bold 18px; color:white}"
     STR_QBUTTON_LOADING_STYLESHEET = "QPushButton {background-color: #9f9f9f; border-width: 2px; border-radius: 10px; border-color: white; font: bold 15px; color:white}"
     STR_QBUTTON_STOP_STYLESHEET = "QPushButton {background-color: #ff1824; border-width: 2px; border-radius: 10px; border-color: white; font: bold 18px; color:white} QPushButton:pressed { background-color: #aa0009 } QPushButton:hover { background-color: #aa0009 }"
@@ -112,10 +113,11 @@ class UIGraph():
         self.rootGrid = QtGui.QGridLayout()        
         self.mainWidget.setWindowTitle('Astibot')        
         self.mainWidget.resize(self.MAIN_WINDOW_WIDTH_IN_PX, self.MAIN_WINDOW_HEIGHT_IN_PX)
-        self.mainWidget.setWindowIcon(QtGui.QIcon("AstibotIcon.png"))
+        self.mainWidget.setWindowIcon(QtGui.QIcon("res/AstibotIcon.png"))
+        
         
         # Customize main widget (window)
-        self.mainWidget.setStyleSheet("background-color:#203044;")
+        self.mainWidget.setStyleSheet("background-color:"+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+";")
         self.mainWidget.setAutoFillBackground(True);
                
         # By default consider the data series will start now. This can be overridden 
@@ -168,7 +170,7 @@ class UIGraph():
         self.timerUpdateLiveData.timeout.connect(self.UIGR_updateLiveDataTimer)
         self.timerUpdateLiveData.start(150)
          
-        # End if UI init, show window
+        # End of UI init, show window
         self.mainWidget.show()
         
         # Child windows 
@@ -304,7 +306,7 @@ class UIGraph():
         print("slider moved to %s" % self.sliderSensitivityLevel.value())
         if (self.sliderSensitivityLevel.value() != self.currentSensitivitySliderValue):
             self.currentSensitivitySliderValue = self.sliderSensitivityLevel.value()
-            self.lblSensitivityLevelSlider1.setText("Dips sensitivity: %s/6" % str(self.currentSensitivitySliderValue))
+            self.lblSensitivityLevelSlider1.setText("Dips Sense: %s/6" % str(self.currentSensitivitySliderValue))
             self.sensitivitySliderValueHasChanged = True
     
 
@@ -357,7 +359,7 @@ class UIGraph():
         self.rootHboxTop = QtGui.QHBoxLayout()
         self.rootHboxTop.setContentsMargins(40, 0, 40, 0) # left, top, right, bottom
         self.lblLogo = QtGui.QLabel("lblLogo")
-        pixmap = QtGui.QPixmap('AstibotLogo.png')
+        pixmap = QtGui.QPixmap('res/AstibotLogo.png')
         self.lblLogo.setPixmap(pixmap)
         self.rootHboxTop.addWidget(self.lblLogo)
         self.rootHboxTop.addWidget(self.lblVersion)
@@ -376,19 +378,19 @@ class UIGraph():
         self.rootHboxBottom = QtGui.QHBoxLayout()
         self.rootHboxBottom.setContentsMargins(40, 0, 40, 0) # left, top, right, bottom
         self.rootVboxBottomRight = QtGui.QVBoxLayout()
-        self.lblConnection = QtGui.QLabel("")
-        self.lblConnection.setAlignment(QtCore.Qt.AlignRight)
+        self.lblconnection = QtGui.QLabel("")
+        self.lblconnection.setAlignment(QtCore.Qt.AlignRight)
         self.lblToolTip.setStyleSheet(self.STR_QLABEL_TOOLTIP_STYLESHEET);
         self.lblToolTip.setWordWrap(True);
         self.lblToolTip.setFixedWidth((self.MAIN_WINDOW_WIDTH_IN_PX / 2))
         self.lblToolTip.setFixedHeight(42)
-        self.lblConnection.setStyleSheet(self.STR_QLABEL_CONNECTION_STATUS_STYLESHEET);
+        self.lblconnection.setStyleSheet(self.STR_QLABEL_connection_STATUS_STYLESHEET);
         self.lblLiveData = QtGui.QLabel("")
         self.lblLiveData.setStyleSheet(self.STR_QLABEL_LIVE_DATA_STYLESHEET);
         self.lblLiveData.setAlignment(QtCore.Qt.AlignRight)
-        self.lblConnection.setAlignment(QtCore.Qt.AlignRight)
+        self.lblconnection.setAlignment(QtCore.Qt.AlignRight)
         self.rootHboxBottom.addWidget(self.lblToolTip, QtCore.Qt.AlignLeft)
-        self.rootVboxBottomRight.addWidget(self.lblConnection)
+        self.rootVboxBottomRight.addWidget(self.lblconnection)
         self.rootVboxBottomRight.addWidget(self.lblLiveData)     
         self.rootHboxBottom.addLayout(self.rootVboxBottomRight, QtCore.Qt.AlignRight)
         self.rootBottomBlock.setLayout(self.rootHboxBottom)
@@ -478,7 +480,7 @@ class UIGraph():
         self.lblRiskLevelSlider3.setStyleSheet(self.STR_QLABEL_STYLESHEET)
         self.sliderRiskLevel.setStyleSheet(self.STR_QSLIDER_STYLESHEET)
         
-        self.lblSensitivityLevelSlider1 = QtGui.QLabel("Dips sensitivity: ");
+        self.lblSensitivityLevelSlider1 = QtGui.QLabel("Dips Sense: ");
         self.lblSensitivityLevelSlider1.setFixedWidth(140)
         self.lblSensitivityLevelSlider2 = QtGui.QLabel("Low");
         self.lblSensitivityLevelSlider2.setFixedWidth(30)
@@ -553,7 +555,7 @@ class UIGraph():
     def initializeGraphWidgets(self):
         
         pg.setConfigOption('foreground', 'w')
-        pg.setConfigOption('background', (32, 48, 68))
+        pg.setConfigOption('background', theConfig.CONFIG_STYLE_GRAPH_BG_COLOUR)
         pg.GraphicsLayout(border=(100,100,100))
         
         self.strPlot1Title = str(self.theSettings.SETT_GetSettings()["strTradingPair"]) + ' Coinbase Pro Market Price (' + str(self.theSettings.SETT_GetSettings()["strFiatType"]) + ')'
@@ -875,12 +877,12 @@ class UIGraph():
             else:
                 self.lblCurrentState.setVisible(False)
     
-    def UIGR_resetConnectionText(self):
-        self.lblConnection.setText("")
+    def UIGR_resetconnectionText(self):
+        self.lblconnection.setText("")
           
-    def UIGR_updateConnectionText(self, newText):
-        if (self.lblConnection.text() == ""):
-            self.lblConnection.setText(newText)
+    def UIGR_updateconnectionText(self, newText):
+        if (self.lblconnection.text() == ""):
+            self.lblconnection.setText(newText)
 
     def UIGR_updateLiveData(self, newData):
         self.strLiveData = (str(newData)[:100])
@@ -1003,4 +1005,3 @@ class UIGraph():
         
     def UIGR_closeBackgroundOperations(self):
         self.timerUpdateLiveData.stop()
-        

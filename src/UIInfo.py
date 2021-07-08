@@ -9,16 +9,16 @@ import TradingBotConfig as theConfig
 
 class UIInfo(QtGui.QWidget):
     
-    STR_CHECKBOX_AUTHORIZATION_TEXT = "I accept to give the present software a full control of my account through the Application Programming Interface. It includes algorithm-based buying or selling of fiat or cryptocurrency money / assets. I understand the risks related to software-based trading and, by entering here my personal API keys access, I am the only responsible for the totality of every action that is performed by this software through the API system even in case of bug, undesired software behavior, unfavorable market, inappropriate buy or sell decision. I have trained myself in Simulation mode to understand the Software trading strategy and, by entering my API keys, I only give control to money / assets that I can afford to loose."
+    STR_CHECKBOX_AUTHORIZATION_TEXT = "I accept to give the present software full control of my Coinbase PRO account through the Application Programming Interface (API). It includes algorithm-based buying or selling of fiat or cryptocurrency money / assets.\n; I understand the risks related to software-based trading and, by entering here my personal API keys access, I am the only responsible for the totality of every action that is performed by this software through the API system even in case of bug, undesired software behavior, unfavorable market, inappropriate buy or sell decision. I have trained myself in Simulation mode to understand the Software trading strategy and, by entering my API keys, I only give control to money / assets that I can afford to lose."
 
-    STR_BORDER_BLOCK_STYLESHEET = "QWidget {background-color : #151f2b;}"
-    STR_QLABEL_STYLESHEET = "QLabel { background-color : #203044; color : white; font: 13px;}"
-    STR_QLABEL_GREEN_STYLESHEET = "QLabel { background-color : #203044; color : #24b62e; font: bold 14px;}"
-    STR_QLABEL_RED_STYLESHEET = "QLabel { background-color : #203044; color : #ff2e2e; font: bold 14px;}"
-    STR_QLABEL_SMALL_STYLESHEET = "QLabel { background-color : #203044; color : #C2C2C2; font: 11px;}"
-    STR_QCHECKBOX_STYLESHEET = "QCheckBox { background-color : #203044; color : white; font: 10px;}"
-    STR_QCHECKBOX_LABEL_STYLESHEET = "QLabel { background-color : #203044; color : #C2C2C2; font: 10px;}"
-    STR_QLABEL_TITLE_STYLESHEET = "QLabel { background-color : #203044; color : #81C6FE; font: bold 16px;}"
+    STR_BORDER_BLOCK_STYLESHEET = "QWidget {background-color : "+theConfig.CONFIG_STYLE_BG_COLOUR+";}"
+    STR_QLABEL_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : #ffffff; font: 13px;}"
+    STR_QLABEL_GREEN_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : #24b62e; font: bold 14px;}"
+    STR_QLABEL_RED_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : #ff2e2e; font: bold 14px;}"
+    STR_QLABEL_SMALL_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : #C2C2C2; font: 11px;}"
+    STR_QCHECKBOX_STYLESHEET = "QCheckBox { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : #ffffff; font: 10px;}"
+    STR_QCHECKBOX_LABEL_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : #C2C2C2; font: 10px;}"
+    STR_QLABEL_TITLE_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+"; color : #81C6FE; font: bold 16px;}"
     STR_QFRAME_SEPARATOR_STYLESHEET = "background-color: rgb(20, 41, 58);"
     STR_QBUTTON_CLOSE_STYLESHEET = "QPushButton {background-color: #01599e; border-width: 2px; border-radius: 10px; border-color: white; font: bold 15px; color:white} QPushButton:pressed { background-color: #1d8d24 } QPushButton:hover { background-color: #002c4f }"
     STR_QBUTTON_WITHDRAW_ENABLED_STYLESHEET = "QPushButton {background-color: #23b42c; border-width: 2px; border-radius: 10px; border-color: white; font: bold 13px; color:white} QPushButton:pressed { background-color: #1d8d24 } QPushButton:hover { background-color: #1a821f }"
@@ -34,9 +34,9 @@ class UIInfo(QtGui.QWidget):
         
         # Window settings
         #self.setWindowModality(QtCore.Qt.ApplicationModal)
-        self.setWindowTitle('Astibot Information')
-        self.setStyleSheet("background-color:#203044;")
-        self.setWindowIcon(QtGui.QIcon("AstibotIcon.png"))
+        self.setWindowTitle('Crypto Information')
+        self.setStyleSheet("background-color:"+theConfig.CONFIG_STYLE_WIDGET_BG_COLOUR+";")
+        self.setWindowIcon(QtGui.QIcon("res/AstibotIcon.png"))
         self.setAutoFillBackground(True);
         self.setFixedSize(1060, 750)
         
@@ -94,7 +94,7 @@ class UIInfo(QtGui.QWidget):
         self.lblTxtSection11 = QtGui.QLabel()
         self.lblTxtSection11.setWordWrap(True)
         self.lblTxtSection11.setStyleSheet(self.STR_QLABEL_STYLESHEET);   
-        self.lblTxtSection11.setText("<p style=\"margin-left: 45px\"><b></b>When running in live trading mode, Astibot updates the price chart every 10 seconds with the most recent middle-market price from Coinbase Pro exchange. It also computes a MACD-like indicator (bottom yellow graph) that helps finding buy and sell opportunities. Astibot strategy is simple:<br/><br/><b>1. Wait the dip.</b> First, Astibot is waiting for a buy opportunity. Ideally buy oppotunities are detected at the end of a dip.<br/><br/><b>2. Buy the dip. </b> If a buy opportunity is detected AND if the current price is below the red dashed line (the « risk line »), Astibot sends a market buy order to Coinbase Pro in order to buy the crypto asset. The amount of fiat money that is invested can be adjusted in the Settings.<br/><br/><b>3. Wait the top. </b> Astibot waits for the next sell oppotunity that would generate a positive profit, in other words which will at least cover the 2 market order fees (buy + sell fees).<br/><br/><b>4. Sell the top. </b> If a sell oppotunity meets the conditions explained at step 3, the entirety of your crypto asset balance is sold into fiat, and you funds should have increased. Then Astibot goes back to step 1 for another trade<br/>")
+        self.lblTxtSection11.setText("<p style=\"margin-left: 45px\"><b></b>When running in live trading mode, Astibot updates the price chart every 10 seconds with the most recent middle-market price from Coinbase Pro exchange. It also computes a MACD-like indicator (bottom yellow graph) that helps finding buy and sell opportunities. Astibot strategy is simple:<br/><br/><b>1. Wait the dip.</b> First, Astibot is waiting for a buy opportunity. Ideally buy oppotunities are detected at the end of a dip.<br/><br/><b>2. Buy the dip. </b> If a buy opportunity is detected AND if the current price is below the red dashed line (the « risk line »), Astibot sends a market buy order to Coinbase Pro in order to buy the Astibot asset. The amount of fiat money that is invested can be adjusted in the Settings.<br/><br/><b>3. Wait the top. </b> Astibot waits for the next sell oppotunity that would generate a positive profit, in other words which will at least cover the 2 market order fees (buy + sell fees).<br/><br/><b>4. Sell the top. </b> If a sell oppotunity meets the conditions explained at step 3, the entirety of your Astibot asset balance is sold into fiat, and you funds should have increased. Then Astibot goes back to step 1 for another trade<br/>")
         self.mainGridLayout.addWidget(self.lblTxtSection11, rowNumber, 0, 1, 2)
         rowNumber = rowNumber + 1
         
@@ -127,7 +127,7 @@ class UIInfo(QtGui.QWidget):
         
         # White chart -------------------------------
         self.lblChartWhite = QtGui.QLabel("")
-        pixmap = QtGui.QPixmap('chart_white.png')
+        pixmap = QtGui.QPixmap('res/chart_white.png')
         self.lblChartWhite.setPixmap(pixmap)
         self.mainGridLayout.addWidget(self.lblChartWhite, rowNumber, 0, 1, 1, QtCore.Qt.AlignRight)
         
@@ -140,7 +140,7 @@ class UIInfo(QtGui.QWidget):
         
         # Orange chart -------------------------------
         self.lblChartOrange = QtGui.QLabel("")
-        pixmap = QtGui.QPixmap('chart_orange.png')
+        pixmap = QtGui.QPixmap('res/chart_orange.png')
         self.lblChartOrange.setPixmap(pixmap)
         self.mainGridLayout.addWidget(self.lblChartOrange, rowNumber, 0, 1, 1, QtCore.Qt.AlignRight)
         
@@ -153,7 +153,7 @@ class UIInfo(QtGui.QWidget):
         
         # Blue chart -------------------------------
         self.lblChartBlue = QtGui.QLabel("")
-        pixmap = QtGui.QPixmap('chart_blue.png')
+        pixmap = QtGui.QPixmap('res/chart_blue.png')
         self.lblChartBlue.setPixmap(pixmap)
         self.mainGridLayout.addWidget(self.lblChartBlue, rowNumber, 0, 1, 1, QtCore.Qt.AlignRight)
         
@@ -166,7 +166,7 @@ class UIInfo(QtGui.QWidget):
         
         # Red line -------------------------------
         self.lblChartRed = QtGui.QLabel("")
-        pixmap = QtGui.QPixmap('chart_red.png')
+        pixmap = QtGui.QPixmap('res/chart_red.png')
         self.lblChartRed.setPixmap(pixmap)
         self.mainGridLayout.addWidget(self.lblChartRed, rowNumber, 0, 1, 1, QtCore.Qt.AlignRight)
         
@@ -179,7 +179,7 @@ class UIInfo(QtGui.QWidget):
         
         # Buy Sells symbols -------------------------------
         self.lblChartSymbols = QtGui.QLabel("")
-        pixmap = QtGui.QPixmap('chart_symbols.png')
+        pixmap = QtGui.QPixmap('res/chart_symbols.png')
         self.lblChartSymbols.setPixmap(pixmap)
         self.mainGridLayout.addWidget(self.lblChartSymbols, rowNumber, 0, 1, 1, QtCore.Qt.AlignRight)
         
@@ -199,7 +199,7 @@ class UIInfo(QtGui.QWidget):
         rowNumber = rowNumber + 1
         
         self.lblChartYellow = QtGui.QLabel("")
-        pixmap = QtGui.QPixmap('chart_yellow.png')
+        pixmap = QtGui.QPixmap('res/chart_yellow.png')
         self.lblChartYellow.setPixmap(pixmap)
         self.mainGridLayout.addWidget(self.lblChartYellow, rowNumber, 0, 1, 1, QtCore.Qt.AlignRight)
         

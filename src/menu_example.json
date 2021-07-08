@@ -1,0 +1,49 @@
+{
+	"menu":[
+		{
+		"pair":"ETH-USD",
+		"crypto": "ETH",
+		"fiat": "USD"
+		},		
+		{
+		"pair":"ETC-USD",
+		"crypto": "ETC",
+		"fiat": "USD"
+		},		
+		{
+		"pair":"GRT-USD",
+		"crypto": "GRT",
+		"fiat": "USD"
+		},		
+		{
+		"pair":"DOGE-USD",
+		"crypto": "DOGE",
+		"fiat": "USD"
+		},		
+		{
+		"pair":"DAI-USD",
+		"crypto": "DAI",
+		"fiat": "USD"
+		},		
+		{
+		"pair":"COMP-USD",
+		"crypto": "COMP",
+		"fiat": "USD"
+		},		
+		{
+		"pair":"AMP-USD",
+		"crypto": "AMP",
+		"fiat": "USD"
+		},		
+		{
+		"pair":"ALGO-USD",
+		"crypto": "ALGO",
+		"fiat": "USD"
+		},	
+		{
+		"pair":"AAVE-USD",
+		"crypto": "AAVE",
+		"fiat": "USD"
+		}
+	]
+}

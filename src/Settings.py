@@ -1,5 +1,6 @@
 import pickle
 import ctypes # Message box popup
+import TradingBotConfig as theConfig
 
 class Settings(object):
     '''
@@ -15,9 +16,9 @@ class Settings(object):
                     "strSecretKey": "",
                     "strPassphrase": "",
                     "bHasAcceptedConditions": False,
-                    "strTradingPair": "BTC-EUR",
-                    "strFiatType": "EUR",
-                    "strCryptoType": "BTC",
+                    "strTradingPair": "DOGE-"+theConfig.CONFIG_FIAT_TYPE,
+                    "strFiatType": theConfig.CONFIG_FIAT_TYPE,
+                    "strCryptoType": "DOGE",
                     "investPercentage": 90,
                     "platformTakerFee": 0.5,
                     "sellTrigger" : 0.0,
@@ -36,7 +37,7 @@ class Settings(object):
     def SETT_SaveSettings(self):
         print("SETT - Saving settings")
         try:
-            pickle.dump(self.settings, open("astibot.settings", "wb"))
+            pickle.dump(self.settings, open("Astibot.settings", "wb"))
         except BaseException as e:
             self.MessageBoxPopup("Error during write operation of Astibot settings file. Check that you are running Astibot from a writable directory.", 0)
 
@@ -45,7 +46,7 @@ class Settings(object):
     def SETT_LoadSettings(self):
         print("SETT - Loading settings")
         try:
-            self.settings = pickle.load(open("astibot.settings", "rb"))
+            self.settings = pickle.load(open("Astibot.settings", "rb"))
             self.isSettingsFilePresent = True
         except BaseException as e:
             print("SETT - Exception : " + str(e))

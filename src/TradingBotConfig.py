@@ -1,8 +1,10 @@
-CONFIG_VERSION = "1.3.1"
+CONFIG_VERSION = "0.9.7 RC 1"
 
 #####################################################################################################################
 ######## Operational Parameters
 #####################################################################################################################
+# Fiat Type USD/EUR/GBP full list :https://help.coinbase.com/en/pro/trading-and-funding/cryptocurrency-trading-pairs/locations-and-trading-pairs
+CONFIG_FIAT_TYPE = "USD"
 
 # False: CSV file input. True: Real-time market price 
 CONFIG_INPUT_MODE_IS_REAL_MARKET = True
@@ -114,7 +116,20 @@ CONFIG_CRYPTO_PRICE_QUANTUM = 0.0000001
 CONFIG_AUTO_SELL_NB_CONFIRMATION_SAMPLES = 10
 
 
+
+####################################################################################################################
+###########   Styling Info #######
+####################################################################################################################
+CONFIG_STYLE_BG_COLOUR = "#3e6ebb"
+CONFIG_STYLE_FONT_COLOUR = "#f8f8ff"
+CONFIG_STYLE_LABEL_BG_COLOUR = "#5b87ff"
+CONFIG_STYLE_WIDGET_BG_COLOUR = "#7195d0"
+CONFIG_STYLE_GRAPH_BG_COLOUR = "#355ea0"
+
+
 #####################################################################################################################
 ######## Debug Parameters
 #####################################################################################################################
 CONFIG_DEBUG_ENABLE_DUMMY_WITHDRAWALS = False
+CONFIG_DEBUG_SWITCH = True
+

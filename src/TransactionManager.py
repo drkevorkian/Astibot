@@ -312,7 +312,7 @@ class TransactionManager(object):
                     else:
                         currentMidMarketPrice = self.theMarketData.MRKT_GetLastRefPrice()
                     
-                    print("=== SELL %s at %s EUR. Profit made : %s" % (self.currentBuyAmountInCryptoWithFee, currentMidMarketPrice, profitEstimationInFiat))
+                    print("=== SELL %s at %s %s . Profit made : %s" % (self.currentBuyAmountInCryptoWithFee, currentMidMarketPrice, theConfig.CONFIG_FIAT_TYPE, profitEstimationInFiat))
                     self.performSellDisplayActions(False, isStopLossSell, currentMidMarketPrice, profitEstimationInFiat)
                     self.currentBuyAmountInCryptoWithoutFee = 0
                     self.currentBuyAmountInCryptoWithFee = 0
@@ -628,20 +628,20 @@ class TransactionManager(object):
         
         if (isLimitOrder):
             if (self.isOrderPlacingActive == False): # Order is totally filled
-                self.theUIGraph.UIGR_updateInfoText("SELL filled at %s, profit was about %s EUR. Waiting for next buy opportunity" % (sellTimeStr, round(profitEstimationInFiat, 5)), False)
-                self.pendingNotificationToSend = ("*SELL filled* at %s %s, profit was about *%s EUR*. " % (round(sellPriceInFiat, 5), self.theSettings.SETT_GetSettings()["strFiatType"], round(profitEstimationInFiat, 5)))
+                self.theUIGraph.UIGR_updateInfoText("SELL filled at %s, profit was about %s %s. Waiting for next buy opportunity" % (sellTimeStr, round(profitEstimationInFiat, 5)),theConfig.CONFIG_FIAT_TYPE, False)
+                self.pendingNotificationToSend = ("*SELL filled* at %s %s, profit was about *%s %s*. " % (round(sellPriceInFiat, 5), self.theSettings.SETT_GetSettings()["strFiatType"], round(profitEstimationInFiat, 5), theConfig.CONFIG_FIAT_TYPE))
                 # Order is totally filled, add marker
                 self.theUIGraph.UIGR_addMarker(2)
             else:                
-                self.theUIGraph.UIGR_updateInfoText("Partial sell at %s, profit was about %s EUR. Still ongoing, waiting for next matches" % (sellTimeStr, round(profitEstimationInFiat, 5)), False)
-                self.pendingNotificationToSend = ("*SELL match* at %s %s, profit was about *%s EUR*. " % (round(sellPriceInFiat, 5), self.theSettings.SETT_GetSettings()["strFiatType"], round(profitEstimationInFiat, 5)))
+                self.theUIGraph.UIGR_updateInfoText("Partial sell at %s, profit was about %s %s. Still ongoing, waiting for next matches" % (sellTimeStr, round(profitEstimationInFiat, 5), theConfig.CONFIG_FIAT_TYPE), False)
+                self.pendingNotificationToSend = ("*SELL match* at %s %s, profit was about *%s %s*. " % (round(sellPriceInFiat, 5), self.theSettings.SETT_GetSettings()["strFiatType"], round(profitEstimationInFiat, 5),theConfig.CONFIG_FIAT_TYPE))
         else:
             if (isStopLossSell == False):
-                self.theUIGraph.UIGR_updateInfoText("Last sell at %s, profit was about %s EUR. Waiting for next buy opportunity" % (sellTimeStr, round(profitEstimationInFiat, 5)), False)
-                self.pendingNotificationToSend = ("*SELL* at %s %s, profit was about *%s EUR*. " % (round(sellPriceInFiat, 5), self.theSettings.SETT_GetSettings()["strFiatType"], round(profitEstimationInFiat, 5)))
+                self.theUIGraph.UIGR_updateInfoText("Last sell at %s, profit was about %s %s. Waiting for next buy opportunity" % (sellTimeStr, round(profitEstimationInFiat, 5), theConfig.CONFIG_FIAT_TYPE), False)
+                self.pendingNotificationToSend = ("*SELL* at %s %s, profit was about *%s %s*. " % (round(sellPriceInFiat, 5), self.theSettings.SETT_GetSettings()["strFiatType"], round(profitEstimationInFiat, 5), theConfig.CONFIG_FIAT_TYPE))
             else:
-                self.theUIGraph.UIGR_updateInfoText("StopLoss-sell at %s, loss was about %s EUR. Waiting for next buy opportunity" % (sellTimeStr, round(profitEstimationInFiat, 5)), True)
-                self.pendingNotificationToSend = ("*STOPLOSS-SELL* at %s %s, loss was about *%s EUR*. " % (round(sellPriceInFiat, 5), self.theSettings.SETT_GetSettings()["strFiatType"], round(profitEstimationInFiat, 5)))
+                self.theUIGraph.UIGR_updateInfoText("StopLoss-sell at %s, loss was about %s %s. Waiting for next buy opportunity" % (sellTimeStr, round(profitEstimationInFiat, 5), theConfig.CONFIG_FIAT_TYPE), True)
+                self.pendingNotificationToSend = ("*STOPLOSS-SELL* at %s %s, loss was about *%s %s*. " % (round(sellPriceInFiat, 5), self.theSettings.SETT_GetSettings()["strFiatType"], round(profitEstimationInFiat, 5), theConfig.CONFIG_FIAT_TYPE))
             
             # Add marker
             self.theUIGraph.UIGR_addMarker(2)

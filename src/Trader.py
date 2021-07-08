@@ -32,7 +32,7 @@ class Trader(object):
         self.TRAD_ResetTradingParameters()
         self.theTransactionManager.TRNM_InitiateNewTradingSession(startSession)
         if (startSession == True):
-            theNotifier.SendWhatsappMessage("*Astibot: New trading session* started on the %s trading pair!" % self.theSettings.SETT_GetSettings()["strTradingPair"])
+            theNotifier.SendWhatsappMessage("*crypto: New trading session* started on the %s trading pair!" % self.theSettings.SETT_GetSettings()["strTradingPair"])
 
     def TRAD_TerminateTradingSession(self):
         self.theTransactionManager.TRNM_TerminateCurrentTradingSession()
