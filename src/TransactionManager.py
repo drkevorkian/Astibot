@@ -1,8 +1,9 @@
 import time
-from datetime import datetime
-
+import os
 import threading
-
+import json
+from datetime import datetime
+from io import StringIO
 from GDAXControler import GDAXControler
 from UIGraph import UIGraph
 import TradingBotConfig as theConfig
@@ -50,8 +51,46 @@ class TransactionManager(object):
         self.orderPlacingCurrentPriceInFiat = 0
 
         self.isRunning = True
+        
 
-
+    def TRNM_TransactionHistory(self, Crypto, fiat, buyOrSell, Price, Amount, buyOrSellTime):
+        print("TRNM - Saving Transaction to file")
+        PATH='TransactionHistory.json'
+        if (os.path.exists(PATH) == False):
+            print("TRNM - !!!File Not Found... Creating %s" % PATH)
+            file = open(PATH, "w")
+            print("====================================================================================")
+            print("TRNM - please wait...")
+            print("====================================================================================")
+            time.sleep(0.05)
+        if(os.stat(PATH).st_size == 0):
+            print("TRNM - !!!EMPTY %s FILE... Adding header" % PATH)
+            fill = {"Transactions":[]}
+            file = open(PATH, 'w', encoding='utf-8')
+            with file as f:
+                json.dump(fill, f)
+                print("====================================================================================")
+                print("TRNM - please wait...")
+                print("====================================================================================")
+                time.sleep(.05)
+        buytime = datetime.fromtimestamp(int(time.time())).strftime('%H:%M')        
+        data = {
+            "crypto": Crypto,
+            "fiat": fiat,
+            "buyOrSell": buyOrSell,
+            "ppc": Price,
+            "amount": Amount,
+            "buyTime": buyOrSellTime,
+            "HumanReadableTime": buytime 
+        }   
+        print("TRNM - Transaction DATA : %s" % data)
+        with open(PATH, "r") as file:
+            olddata = json.load(file)  
+        olddata["Transactions"].append(data)
+        with open(PATH, 'w', encoding='utf-8') as f:
+            json.dump(olddata, f, ensure_ascii=False, indent=4)
+        print("TRNM - Transaction SAVED")
+            
     def TRNM_InitiateNewTradingSession(self, startSession):
         self.theoricalProfit = 0
         self.realProfit = 0
@@ -249,6 +288,7 @@ class TransactionManager(object):
                 buyTimeStr = datetime.fromtimestamp(int(self.buyTimeInTimeStamp)).strftime('%H:%M')
                 if (bOrderIsSuccessful == True):
                     self.performBuyDisplayActions(False)
+                    self.TRNM_TransactionHistory(self.theSettings.SETT_GetSettings()["strCryptoType"], self.theSettings.SETT_GetSettings()["strFiatType"], "buy", self.currentBuyInitialPriceInEUR, self.currentBuyAmountInCryptoWithoutFee, self.buyTimeInTimeStamp)
                 else:
                     # Buy transaction failed, cancel
                     self.currentBuyAmountInCryptoWithoutFee = 0
@@ -305,6 +345,7 @@ class TransactionManager(object):
                 sellTimeStr = datetime.fromtimestamp(int(sellTimeInTimestamp)).strftime('%Hh%M')
 
                 if (bOrderIsSuccessful == True):
+                    self.TRNM_TransactionHistory(self.theSettings.SETT_GetSettings()["strCryptoType"], self.theSettings.SETT_GetSettings()["strFiatType"], "SELL", self.currentBuyInitialPriceInEUR, self.currentBuyAmountInCryptoWithoutFee, sellTimeInTimestamp)
                     self.theoricalProfit = self.theoricalProfit + profitEstimationInFiat
                     
                     if (theConfig.CONFIG_INPUT_MODE_IS_REAL_MARKET == True):
