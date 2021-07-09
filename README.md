@@ -30,12 +30,15 @@ Astibot can run on any computer capable of runnning Python 3, including Raspberr
 
 #### Install required dependencies
 
-pip3 install pyqt5 pyqtgraph tzlocal cbpro twilio scipy ipdb
+pip3 install pyqt5 pyqtgraph tzlocal cbpro twilio scipy ipdb datetime pytz numpy pickle5 notifier
+    
+
 
 #### Start-up
 
 1. python Astibot.py
-2. At first start-up, enter your Coinbase Pro API keys (view and trade permissions are required)
+2. Before starting, edit TradingBotConfig.py and adjust your Fiat type, USD/EUR/GBP are supported. 
+3. At first start-up,  enter your Coinbase Pro API keys (view and trade permissions are required)
 
 ## Results
 
@@ -67,3 +70,46 @@ To understand the general software breakdown, a diagram is worth thousand words.
 * Some modules are too big and could be split into more micro modules (UIGraph for example)
 * Astibot was originally designed to trade fiat-crypto pairs. Recently, I added the support for BTC based pairs but I didn't have time to rename all the variable labelled "fiatXXX" that were orginally are designed to contain data about the fiat currency. So for example, variables fiatAccountBalance and cryptoAccountBalance should have more generic names like account1Balance, account2Balance.
 
+## Custom pair menus
+to add a json file containing a custom pair menu, rename menu_example.json to menu.json and edit it to include only the items you want. must be formatted as follows...
+```
+{
+	"menu":[
+	{
+		"pair":"ETH-USD",
+		"crypto": "ETH",
+		"fiat": "USD"
+	},	
+	{
+		"pair":"DOGE-USD",
+		"crypto": "DOGE",
+		"fiat": "USD"
+	}
+	]
+}
+```
+## CHANGE LOG
+
+- [x]switch to disable debug console 
+- [x]removed borders from donate and settings
+- [x]added extra  parameters for sim length (memory intensive) 
+- [x]close debug console when asitbot is closed from menu bar
+- [x]work-around for GDAX too precise error (switching precision from 8 to 1)
+- [x]work-around for GDAX kicked from API ( switched sleep timer from 1 to 4)
+- [x]fixed all spelling errors ( I could find )
+- [x]made it easier to style the main GUI and widgets from TradingBotConfig
+- [x]added fiat type to TradingBotConfig USD/EUR/GBP are supported by CB.
+- [x]added support for custom list of coins via json file. 
+- [x]changed GUI colours to be a bit more soothing.
+- [x]save crypto, fiat, amount bought/sold, purchase date, and purchase price per coin on each buy and sell incase of powerfailure
+
+## TODO's
+
+- []All options in TradingBotConfig.py need to be addressable from cmdline argv
+- []Portfolio balancing
+- []STD for each coin and the users portfolio as a whole(numpy is already imported)
+- []top 10 gainers from coinmarketcap
+- []Free MODE use for SIMs (NO API KEY REQUIRED TO SIM) coingecko API ( "https://api.coingecko.com/api/v3/coins/bitcoin/tickers" )
+- []Give UI a Glass feel
+- []Custom Title Bar to match the UI style
+- []tweak dip sensitivity levels. 
