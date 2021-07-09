@@ -105,11 +105,11 @@ to add a json file containing a custom pair menu, rename menu_example.json to me
 
 ## TODO's
 
-- []All options in TradingBotConfig.py need to be addressable from cmdline argv
-- []Portfolio balancing
-- []STD for each coin and the users portfolio as a whole(numpy is already imported)
-- []top 10 gainers from coinmarketcap
-- []Free MODE use for SIMs (NO API KEY REQUIRED TO SIM) coingecko API ( "https://api.coingecko.com/api/v3/coins/bitcoin/tickers" )
-- []Give UI a Glass feel
-- []Custom Title Bar to match the UI style
-- []tweak dip sensitivity levels. 
+- [_]All options in TradingBotConfig.py need to be addressable from cmdline argv
+- [_]Portfolio balancing
+- [_]STD for each coin and the users portfolio as a whole(numpy is already imported)
+- [_]top 10 gainers from coinmarketcap
+- [_]Free MODE use for SIMs (NO API KEY REQUIRED TO SIM) coingecko API ( "https://api.coingecko.com/api/v3/coins/bitcoin/tickers" )
+- [_]Give UI a Glass feel
+- [_]Custom Title Bar to match the UI style
+- [_]tweak dip sensitivity levels. 
