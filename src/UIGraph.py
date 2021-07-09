@@ -72,7 +72,7 @@ class UIGraph():
     STR_BORDER_BLOCK_STYLESHEET = "QWidget {background-color : "+theConfig.CONFIG_STYLE_BG_COLOUR+";}"
     STR_USER_BLOCK_STYLESHEET = "QWidget {background-color : "+theConfig.CONFIG_STYLE_BG_COLOUR+";}"
     STR_QLABEL_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: bold 13px;}"
-    STR_QLABEL_PROFIT_GREEN_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; color : #24b62e; font: bold 14px;}"
+    STR_QLABEL_PROFIT_GREEN_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; color : #4ff900; font: bold 14px;}"
     STR_QLABEL_PROFIT_RED_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; color : #FF2F2F; font: bold 14px;}"
     STR_QLABEL_CURRENT_STATE_LIVE_TRADING_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; color : #ff2e2e; font: bold 16px;}"
     STR_QLABEL_INFO_STYLESHEET = "QLabel { background-color : "+theConfig.CONFIG_STYLE_LABEL_BG_COLOUR+"; color : "+theConfig.CONFIG_STYLE_FONT_COLOUR+"; font: 14px;}"
