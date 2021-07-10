@@ -36,8 +36,9 @@ pip3 install pyqt5 pyqtgraph tzlocal cbpro twilio scipy ipdb datetime pytz numpy
 
 #### Start-up
 
-1. python Astibot.py
-2. Before starting, edit TradingBotConfig.py and adjust your Fiat type, USD/EUR/GBP are supported. 
+
+1. Before starting, edit TradingBotConfig.py and adjust your Fiat type, USD/EUR/GBP are supported.
+2. python Astibot.py
 3. At first start-up,  enter your Coinbase Pro API keys (view and trade permissions are required)
 
 ## Results
@@ -113,3 +114,4 @@ to add a json file containing a custom pair menu, rename menu_example.json to me
 - [_]Give UI a Glass feel
 - [_]Custom Title Bar to match the UI style
 - [_]tweak dip sensitivity levels. 
+- [_]Auto Detect fiat type. 
