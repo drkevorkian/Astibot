@@ -53,33 +53,38 @@ class TransactionManager(object):
         self.isRunning = True
         
 
-    def TRNM_TransactionHistory(self, Crypto, fiat, buyOrSell, Price, Amount, buyOrSellTime):
+    def TRNM_TransactionHistory(self, Crypto, fiat, buyOrSell, BuyPrice, Amount, SellPrice, buyOrSellTime):
         print("TRNM - Saving Transaction to file")
         PATH='TransactionHistory.json'
         if (os.path.exists(PATH) == False):
             print("TRNM - !!!File Not Found... Creating %s" % PATH)
             file = open(PATH, "w")
-            print("====================================================================================")
-            print("TRNM - please wait...")
-            print("====================================================================================")
+            if(theConfig.CONFIG_DEBUG == True):
+                print("====================================================================================")
+                print("TRNM - Closing %s ... please wait..."% PATH)
+                print("====================================================================================")
             time.sleep(0.05)
+            file.close() 
         if(os.stat(PATH).st_size == 0):
             print("TRNM - !!!EMPTY %s FILE... Adding header" % PATH)
             fill = {"Transactions":[]}
             file = open(PATH, 'w', encoding='utf-8')
             with file as f:
                 json.dump(fill, f)
-                print("====================================================================================")
-                print("TRNM - please wait...")
-                print("====================================================================================")
+                if(theConfig.CONFIG_DEBUG == True):
+                    print("====================================================================================")
+                    print("TRNM - please wait...")
+                    print("====================================================================================")
                 time.sleep(.05)
-        buytime = datetime.fromtimestamp(int(time.time())).strftime('%H:%M')        
+            file.close()
+        buytime = datetime.fromtimestamp(int(time.time())).strftime('%H:%M:%S')        
         data = {
             "crypto": Crypto,
             "fiat": fiat,
             "buyOrSell": buyOrSell,
-            "ppc": Price,
+            "ppc": BuyPrice,
             "amount": Amount,
+            "sellThreshold": SellPrice,
             "buyTime": buyOrSellTime,
             "HumanReadableTime": buytime 
         }   
@@ -288,7 +293,11 @@ class TransactionManager(object):
                 buyTimeStr = datetime.fromtimestamp(int(self.buyTimeInTimeStamp)).strftime('%H:%M')
                 if (bOrderIsSuccessful == True):
                     self.performBuyDisplayActions(False)
-                    self.TRNM_TransactionHistory(self.theSettings.SETT_GetSettings()["strCryptoType"], self.theSettings.SETT_GetSettings()["strFiatType"], "buy", self.currentBuyInitialPriceInEUR, self.currentBuyAmountInCryptoWithoutFee, self.buyTimeInTimeStamp)
+                    #prep transaction history
+                    sellTriggerInPercent = self.theSettings.SETT_GetSettings()["sellTrigger"]
+                    sellThreshold = self.currentBuyInitialPriceInEUR * (theConfig.CONFIG_MIN_PRICE_ELEVATION_RATIO_TO_SELL + 2*self.platformTakerFeeInPercent)
+                        
+                    self.TRNM_TransactionHistory(self.theSettings.SETT_GetSettings()["strCryptoType"], self.theSettings.SETT_GetSettings()["strFiatType"], "BUY", self.currentBuyInitialPriceInEUR, self.currentBuyAmountInCryptoWithoutFee, sellThreshold, self.buyTimeInTimeStamp)
                 else:
                     # Buy transaction failed, cancel
                     self.currentBuyAmountInCryptoWithoutFee = 0
@@ -345,7 +354,11 @@ class TransactionManager(object):
                 sellTimeStr = datetime.fromtimestamp(int(sellTimeInTimestamp)).strftime('%Hh%M')
 
                 if (bOrderIsSuccessful == True):
-                    self.TRNM_TransactionHistory(self.theSettings.SETT_GetSettings()["strCryptoType"], self.theSettings.SETT_GetSettings()["strFiatType"], "SELL", self.currentBuyInitialPriceInEUR, self.currentBuyAmountInCryptoWithoutFee, sellTimeInTimestamp)
+                    #prep transaction history
+                    sellTriggerInPercent = self.theSettings.SETT_GetSettings()["sellTrigger"]
+                    sellThreshold = self.currentBuyInitialPriceInEUR * (theConfig.CONFIG_MIN_PRICE_ELEVATION_RATIO_TO_SELL + 2*self.platformTakerFeeInPercent)
+                        
+                    self.TRNM_TransactionHistory(self.theSettings.SETT_GetSettings()["strCryptoType"], self.theSettings.SETT_GetSettings()["strFiatType"], "SELL", self.currentBuyInitialPriceInEUR, self.currentBuyAmountInCryptoWithoutFee, sellThreshold, sellTimeInTimestamp)
                     self.theoricalProfit = self.theoricalProfit + profitEstimationInFiat
                     
                     if (theConfig.CONFIG_INPUT_MODE_IS_REAL_MARKET == True):
