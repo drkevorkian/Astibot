@@ -130,7 +130,9 @@ class GDAXControler(cbpro.OrderBook):
         try:
             self.accounts = self.clientAuth.get_accounts()
             time.sleep(0.05)
+            print("=================================================================================")
             print("GDAX - Init, Accounts retrieving: %s" % self.accounts)
+            print("=================================================================================")
             if ('id' in self.accounts[0]):
                 print("GDAX - Successful accounts retrieving")
             else:
@@ -150,7 +152,7 @@ class GDAXControler(cbpro.OrderBook):
         if (bInternetLinkIsOK == True):
             if (bGDAXconnectionIsOK == True):
                 # Check existence of right accounts
-                for currentAccount in self.accounts:
+                for currentAccount in self.accounts:                    
                     if currentAccount['currency'] == self.productCryptoStr:
                         self.CryptoAccount = currentAccount
                         self.bCryptoAccountExists = True
@@ -231,17 +233,17 @@ class GDAXControler(cbpro.OrderBook):
             print("GDAX - Does not exist")
             return 0
         
-    # Returns the Available Astibot balance (ie. money that can be used and that is not held for any pending order)
+    # Returns the Available Crypto balance (ie. money that can be used and that is not held for any pending order)
     def GDAX_GetCryptoAccountBalance(self):
         if (self.bCryptoAccountExists == True):
             try:
                 balanceToReturn = (round(float(self.CryptoAccount['available']), 8))
                 return balanceToReturn
             except BaseException as e:
-                print("GDAX - Error retrieving Astibot account balance. Inconsistent data in Astibot account object.")
+                print("GDAX - Error retrieving Crypto account balance. Inconsistent data in Crypto account object.")
                 return 0
         else:
-            print("GDAX - Error retrieving Astibot account balance. Crypto account does not exist")
+            print("GDAX - Error retrieving Crypto account balance. Crypto account does not exist")
             return 0
 
     def GDAX_GetCryptoAccountBalanceHeld(self):
@@ -314,7 +316,6 @@ class GDAXControler(cbpro.OrderBook):
     
     def on_message(self, message):
         super(GDAXControler, self).on_message(message)
-        
         self.webSocketLock.acquire()
         
         # Listen for user orders
