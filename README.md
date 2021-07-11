@@ -103,10 +103,10 @@ to add a json file containing a custom pair menu, rename menu_example.json to me
 - [x]added support for custom list of coins via json file. 
 - [x]changed GUI colours to be a bit more soothing.
 - [x]save crypto, fiat, amount bought/sold, purchase date, and purchase price per coin on each buy and sell incase of powerfailure
-
+- [x]options in TradingBotConfig.py addressable from cmdline argv Astibot.py -h 
 ## TODO's
 
-- [_]All options in TradingBotConfig.py need to be addressable from cmdline argv
+
 - [_]Portfolio balancing
 - [_]STD for each coin and the users portfolio as a whole(numpy is already imported)
 - [_]top 10 gainers from coinmarketcap
@@ -115,3 +115,5 @@ to add a json file containing a custom pair menu, rename menu_example.json to me
 - [_]Custom Title Bar to match the UI style
 - [_]tweak dip sensitivity levels. 
 - [_]Auto Detect fiat type. 
+- [_]Auto Detect supported crypto type from CB.accounts["currency"]. 
+- [_]verify trading of each currency before adding to menu
