@@ -23,7 +23,7 @@ class Settings(object):
                     "platformTakerFee": 0.5,
                     "sellTrigger" : 0.0,
                     "autoSellThreshold": 0.0,
-                    "simulatedFiatBalance": 1000,
+                    "simulatedFiatBalance": theConfig.CONFIG_SIMU_INITIAL_BALANCE_MAX,
                     "simulationSpeed": 20,
                     "simulationTimeRange": 24,
                     }
