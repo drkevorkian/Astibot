@@ -13,8 +13,9 @@ class AppState(object):
     nextAppState = "STATE_INITIALIZATION"
     
     def __init__(self, UIGraph, Trader, GDAXControler, InputDataHandler, MarketData, Settings):
-        
+        # are we leaving open the console in the background? False closes it.
         if(theConfig.CONFIG_DEBUG_SWITCH == False ):
+            # Close the debug console
             ctypes.windll.user32.ShowWindow( ctypes.windll.kernel32.GetConsoleWindow(), 0 )
         
         self.theUIGraph = UIGraph
