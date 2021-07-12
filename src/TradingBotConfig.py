@@ -22,13 +22,15 @@ parser.add_argument('--buypolicyone', dest='buyPolicyOne', type=int, help=textwr
      " When MACD indicator is > BUY1 THRESHOLD and < BUY1 THRESHOLD : Try to place a buy limit order on top of the order book \n"
      " When MACD indicator is > BUY2 THRESHOLD : Do a market buy order\n"
      " => The limit order mode (betwen B1 and B2 threshold) has not been fully tested. So I recommend to only use market orders. \n"
-     " For that, set BUY1 THRESHOLD to a value greater than BUY2 THRESHOLD in Config file so that only MACD > B2 THRESHOLD will occur.', default=0.994)\n"), default=999)
+     " For that, set BUY1 THRESHOLD to a value greater than BUY2 THRESHOLD in Config file so that only MACD > B2 THRESHOLD will occur.\n"), default=999)
 parser.add_argument('--buypolicytwo', dest='buyPolicyTwo', type=int, help=textwrap.dedent("\nBuy policy: \n" 
      " When MACD indicator is < BUY1 THRESHOLD : No buy signal, do nothing \n"
      " When MACD indicator is > BUY1 THRESHOLD and < BUY1 THRESHOLD : Try to place a buy limit order on top of the order book \n"
      " When MACD indicator is > BUY2 THRESHOLD : Do a market buy order\n"
      " => The limit order mode (betwen B1 and B2 threshold) has not been fully tested. So I recommend to only use market orders. \n"
-     " For that, set BUY1 THRESHOLD to a value greater than BUY2 THRESHOLD in Config file so that only MACD > B2 THRESHOLD will occur.', default=0.994)\n"), default=0)
+     " For that, set BUY1 THRESHOLD to a value greater than BUY2 THRESHOLD in Config file so that only MACD > B2 THRESHOLD will occur.'\n"), default=0)
+     
+     
 parser.add_argument('--marketorders', dest='marketOrdersEnabled', type=str, help='Orders policy : MAKER or TAKER (default = True)\n', default=True)
 ############################################################################################################
 ####### STYLING PARAMS ########
