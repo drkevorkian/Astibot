@@ -29,7 +29,18 @@ parser.add_argument('--buypolicytwo', dest='buyPolicyTwo', type=int, help=textwr
      " When MACD indicator is > BUY2 THRESHOLD : Do a market buy order\n"
      " => The limit order mode (betwen B1 and B2 threshold) has not been fully tested. So I recommend to only use market orders. \n"
      " For that, set BUY1 THRESHOLD to a value greater than BUY2 THRESHOLD in Config file so that only MACD > B2 THRESHOLD will occur.'\n"), default=0)
-     
+parser.add_argument('--sellpolicyone', dest='sellPolicyOne', type=int, help=textwrap.dedent("\nSell policy: \n" 
+     " When MACD indicator is > SELL1 THRESHOLD : No sell signal, do nothing\n"
+     " When MACD indicator is < SELL1 THRESHOLD and > SELL2 THRESHOLD : Try to place a sell limit order on top of the order book \n"
+     "When MACD indicator is < SELL2 THRESHOLD : Do a market sell order\n"
+     " => The limit order mode (betwen S1 and S2 threshold) has not been fully tested. So I recommend to only use market orders. \n"
+     " For that, set BUY1 THRESHOLD to a value greater than BUY2 THRESHOLD in Config file so that only MACD > B2 THRESHOLD will occur.\n"), default=-999)
+parser.add_argument('--sellpolicytwo', dest='sellPolicyTwo', type=int, help=textwrap.dedent("\nSell policy: \n" 
+     " When MACD indicator is > SELL1 THRESHOLD : No sell signal, do nothing\n"
+     " When MACD indicator is < SELL1 THRESHOLD and > SELL2 THRESHOLD : Try to place a sell limit order on top of the order book \n"
+     "When MACD indicator is < SELL2 THRESHOLD : Do a market sell order\n"
+     " => The limit order mode (betwen S1 and S2 threshold) has not been fully tested. So I recommend to only use market orders. \n"
+     " For that, set BUY1 THRESHOLD to a value greater than BUY2 THRESHOLD in Config file so that only MACD > B2 THRESHOLD will occur.\n"), default=0)    
      
 parser.add_argument('--marketorders', dest='marketOrdersEnabled', type=str, help='Orders policy : MAKER or TAKER (default = True)\n', default=True)
 ############################################################################################################
@@ -134,8 +145,8 @@ CONFIG_MACD_BUY_2_THRESHOLD = args.buyPolicyTwo
 #     When MACD indicator is < SELL2 THRESHOLD : Do a market sell order
 #     => The limit order mode (betwen S1 and S2 threshold) has not been fully tested. So I recommend to only use market orders.
 # To do that, set SELL1 THRESHOLD to a value greater than SELL2 THRESHOLD in TradingBotConfig file so that only MACD < S2 THRESHOLD will occur.
-CONFIG_MACD_SELL_1_THRESHOLD = -999
-CONFIG_MACD_SELL_2_THRESHOLD = 0
+CONFIG_MACD_SELL_1_THRESHOLD = args.sellPolicyOne
+CONFIG_MACD_SELL_2_THRESHOLD = args.sellPolicyTwo
 
 # A bit too approximative
 MIN_CRYPTO_AMOUNT_REQUESTED_TO_SELL = 0.0005
